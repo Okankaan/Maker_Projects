@@ -1,0 +1,112 @@
+/* 
+
+
+     "mini sumo robotunun çalışan programının son hali"
+     
+*/
+
+
+const int motor1_Forward = 6; // motor1 => sağ motor
+const int motor1_Reverse = 5; 
+const int motor2_Forward = 10; // motor2 => sol motor
+const int motor2_Reverse = 9;
+
+int mL = 0;
+int mC = 0;
+int mR = 0;
+
+int rL = 0;
+int rR = 0;
+
+int speed = 255;
+
+void setup(){
+
+  pinMode(A0, INPUT); // QTR-1A - Reflectance Sensor
+  pinMode(A1, INPUT);
+  
+  pinMode(A2, INPUT); // mz80 - IR Sensor
+  pinMode(A3, INPUT);
+  pinMode(A4, INPUT);
+  delay(3300);
+}
+
+void loop(){
+
+  rL = analogRead(A0); // zeminin rengini anlayacak olan sensörler
+  rR = analogRead(A1);
+  
+  mC = analogRead(A2); // rakip robotu tespit edecek olan sensörler
+  mL = analogRead(A3);
+  mR = analogRead(A4);
+  
+  if(rL > 300 && rR > 300){  // eğer iki sensör de siyah rengi görürse rakip robotu ara
+  
+    if(mC < 100){  // merkezde bulunanan sensör rakip robotu algılarsa robot tam karşında demektir
+    
+      
+      analogWrite(motor1_Reverse, 0);
+      analogWrite(motor1_Forward, speed);
+      analogWrite(motor2_Forward, speed);    // rakibi sahadan atmak için rakibe doğru ilerle
+      analogWrite(motor2_Reverse, 0);
+      delay(400);
+    }
+    
+    else if(mL < 150){    // sol sensör rakibi algılarsa merkez sensör rakibi algılayana kadar sağ motoru çalıştır
+    
+      analogWrite(motor1_Reverse, 0);
+      analogWrite(motor1_Forward, speed);
+      analogWrite(motor2_Forward, 0);    
+      analogWrite(motor2_Reverse, 0);
+      delay(1); 
+    }
+    
+    else if(mR < 150){     // sağ sensör rakibi algılarsa merkez sensör rakibi algılayana kadar sol motoru çalıştır
+    
+      analogWrite(motor2_Forward, speed);    
+      analogWrite(motor2_Reverse, 0);
+      analogWrite(motor1_Forward, 0);    
+      analogWrite(motor1_Reverse, 0);
+      delay(1);
+    
+    }
+    
+    else{
+    
+      analogWrite(motor1_Reverse, 150);    // hiçbir sensör rakibi algılamazsa rakibi bulmak için kendi etrafında dön
+      analogWrite(motor1_Forward, 0);
+      analogWrite(motor2_Forward, 150);    
+      analogWrite(motor2_Reverse, 0);
+      delayMicroseconds(100);
+    
+    }
+  }
+  
+  else{  // eğer sensörlerden biri ve ikisi beyaz rengi görürse sahaya geri dönmeye çalış
+  
+    analogWrite(motor1_Reverse, speed);
+    analogWrite(motor1_Forward, 0);
+    analogWrite(motor2_Forward, 0);    
+    analogWrite(motor2_Reverse, speed);
+    delay (756);
+    
+    analogWrite(motor1_Reverse, 0);
+    analogWrite(motor1_Forward, 0);
+    analogWrite(motor2_Forward, 0);    
+    analogWrite(motor2_Reverse, 0);
+    
+    delayMicroseconds(50);
+    
+    analogWrite(motor1_Reverse, 0);
+    analogWrite(motor1_Forward, speed);
+    analogWrite(motor2_Forward, 0);    
+    analogWrite(motor2_Reverse, speed);
+    
+    delay (150);
+  
+    
+  
+  }
+
+
+}
