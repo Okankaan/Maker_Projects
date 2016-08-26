@@ -91,15 +91,15 @@ void loop() {
     lcd.print("Yuksek Ort Nem");
     lcd.noDisplay();
     delay(500);
-    lcd.display()
+    lcd.display();
     delay(500);
     digitalWrite(red_pin, HIGH);
     digitalWrite(green_pin, LOW);
     digitalWrite(blue_pin, LOW);
 
-    beep(50);
-    beep(50);
-    beep(50);
+    digitalWrite(buzzer_pin,HIGH);
+    delay(1000);
+    digitalWrite(buzzer_pin,LOW);
     delay(1000);
   }
   else if (nemdeger<60)
@@ -109,15 +109,15 @@ void loop() {
     lcd.print("Dusuk Ort Nemi");
     lcd.noDisplay();
     delay(500);
-    lcd.display()
+    lcd.display();
     delay(500);
     digitalWrite(red_pin, LOW);
     digitalWrite(green_pin, LOW);
     digitalWrite(blue_pin, HIGH);
 
-    beep(50);
-    beep(50);
-    beep(50);
+    digitalWrite(buzzer_pin,HIGH);
+    delay(1000);
+    digitalWrite(buzzer_pin,LOW);
     delay(1000);
   }
   else
@@ -135,15 +135,15 @@ void loop() {
     lcd.print("Yuksek Ort Isisi");
     lcd.noDisplay();
     delay(500);
-    lcd.display()
+    lcd.display();
     delay(500);
     digitalWrite(red_pin, HIGH);
     digitalWrite(green_pin, LOW);
     digitalWrite(blue_pin, LOW);
 
-    beep(50);
-    beep(50);
-    beep(50);
+    digitalWrite(buzzer_pin,HIGH);
+    delay(1000);
+    digitalWrite(buzzer_pin,LOW);
     delay(1000);
   }
   else if (nemdeger<10)
@@ -153,15 +153,15 @@ void loop() {
     lcd.print("Dusuk Ort Isisi");
     lcd.noDisplay();
     delay(500);
-    lcd.display()
+    lcd.display();
     delay(500);
     digitalWrite(red_pin, LOW);
     digitalWrite(green_pin, LOW);
     digitalWrite(blue_pin, HIGH);
 
-    beep(50);
-    beep(50);
-    beep(50);
+    digitalWrite(buzzer_pin,HIGH);
+    delay(1000);
+    digitalWrite(buzzer_pin,LOW);
     delay(1000);
   }
   else
@@ -179,15 +179,15 @@ void loop() {
     lcd.print("Yuksek Toprak Nemi");
     lcd.noDisplay();
     delay(500);
-    lcd.display()
+    lcd.display();
     delay(500);
     digitalWrite(red_pin, HIGH);
     digitalWrite(green_pin, LOW);
     digitalWrite(blue_pin, LOW);
 
-    beep(50);
-    beep(50);
-    beep(50);
+    digitalWrite(buzzer_pin,HIGH);
+    delay(1000);
+    digitalWrite(buzzer_pin,LOW);
     delay(1000);
   }
   else if (nemdeger>60)
@@ -197,15 +197,15 @@ void loop() {
     lcd.print("Dusuk Toprak Nemi");
     lcd.noDisplay();
     delay(500);
-    lcd.display()
+    lcd.display();
     delay(500);
     digitalWrite(red_pin, LOW);
     digitalWrite(green_pin, LOW);
     digitalWrite(blue_pin, HIGH);
 
-    beep(50);
-    beep(50);
-    beep(50);
+    digitalWrite(buzzer_pin,HIGH);
+    delay(1000);
+    digitalWrite(buzzer_pin,LOW);
     delay(1000);
   }
   else
