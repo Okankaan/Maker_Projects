@@ -28,7 +28,7 @@ void setup() {
   // Initialize Button Pins
   pinMode(11, INPUT_PULLUP);
   pinMode(13, INPUT_PULLUP);
-  pinMode(9, INPUT_PULLUP);
+  pinMode(5, INPUT_PULLUP);
   pinMode(1, INPUT_PULLUP);
   pinMode(10, INPUT_PULLUP);
  
@@ -45,9 +45,10 @@ int lastButtonState[5] = {0,0,0,0};
 void loop() {
 
   // Read pin values
+  int pins[] = {5,10,11,13};
   for (int index = 0; index < 5; index++)
   {
-    int currentButtonState = !digitalRead(index + 2);
+    int currentButtonState = !digitalRead(pins[index]);
     if (currentButtonState != lastButtonState[index])
     {
       switch (index) {
@@ -89,4 +90,3 @@ void loop() {
 
   delay(10);
 }
-
